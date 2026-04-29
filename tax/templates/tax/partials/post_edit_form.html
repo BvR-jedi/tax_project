@@ -1,0 +1,28 @@
+<div id="post-{{ post.pk }}">
+    <form hx-post="/posts/{{ post.pk }}/update/"
+          hx-target="#post-{{ post.pk }}"
+          hx-swap="outerHTML">
+        {% csrf_token %}
+        <p>
+            <label>Author:<br>
+            <input type="text" name="author" value="{{ post.author }}" required></label>
+        </p>
+        <p>
+            <label>Title:<br>
+            <input type="text" name="title" value="{{ post.title }}" required></label>
+        </p>
+        <p>
+            <label>Content:<br>
+            <textarea name="content" rows="4" cols="50" required>{{ post.content }}</textarea></label>
+        </p>
+        <button type="submit">Save</button>
+        <button type="button"
+                hx-get="/posts/"
+                hx-target="#post-list"
+                hx-swap="innerHTML">
+            Cancel
+        </button>
+    </form>
+
+    <hr>
+</div>

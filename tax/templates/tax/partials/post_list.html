@@ -1,0 +1,5 @@
+{% for post in posts %}
+    {% include "tax/partials/post_item.html" %}
+{% empty %}
+    <p>No posts found.</p>
+{% endfor %}

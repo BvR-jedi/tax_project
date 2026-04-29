@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>tax</title>
+    <script src="https://unpkg.com/htmx.org@1.9.12"></script>
+</head>
+<body>
+
+<h1>tax</h1>
+
+<hr>
+
+<h2>Create New Post</h2>
+<form hx-post="/posts/create/"
+      hx-target="#post-list"
+      hx-swap="innerHTML"
+      hx-on::after-request="this.reset()">
+    {% csrf_token %}
+    <p>
+        <label>Author:<br>
+        <input type="text" name="author" required></label>
+    </p>
+    <p>
+        <label>Title:<br>
+        <input type="text" name="title" required></label>
+    </p>
+    <p>
+        <label>Content:<br>
+        <textarea name="content" rows="4" cols="50" required></textarea></label>
+    </p>
+    <button type="submit">Create Post</button>
+</form>
+
+<hr>
+
+<h2>Search Posts</h2>
+<input type="search"
+       name="q"
+       placeholder="Search by title, author, or content..."
+       hx-get="/posts/search/"
+       hx-trigger="input changed delay:300ms, search"
+       hx-target="#post-list"
+       hx-swap="innerHTML">
+
+<hr>
+
+<h2>All Posts</h2>
+<div id="post-list">
+    {% include "tax/partials/post_list.html" %}
+</div>
+
+</body>
+</html>

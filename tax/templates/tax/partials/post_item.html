@@ -1,0 +1,23 @@
+<div id="post-{{ post.pk }}">
+    <h3>{{ post.title }}</h3>
+    <p><strong>Author:</strong> {{ post.author }}</p>
+    <p><strong>Date:</strong> {{ post.date_created|date:"Y-m-d H:i" }}</p>
+    <p>{{ post.content }}</p>
+
+    <button hx-get="/posts/{{ post.pk }}/edit/"
+            hx-target="#post-{{ post.pk }}"
+            hx-swap="outerHTML">
+        Edit
+    </button>
+
+    <form hx-post="/posts/{{ post.pk }}/delete/"
+          hx-target="#post-{{ post.pk }}"
+          hx-swap="outerHTML"
+          hx-confirm="Delete this post?"
+          style="display:inline;">
+        {% csrf_token %}
+        <button type="submit">Delete</button>
+    </form>
+
+    <hr>
+</div>
