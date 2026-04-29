@@ -5,12 +5,12 @@ from .models import Post
 
 def index(request):
     posts = Post.objects.all().order_by('-date_created')
-    return render(request, 'blog/index.html', {'posts': posts})
+    return render(request, 'tax/index.html', {'posts': posts})
 
 
 def post_list(request):
     posts = Post.objects.all().order_by('-date_created')
-    return render(request, 'blog/partials/post_list.html', {'posts': posts})
+    return render(request, 'tax/partials/post_list.html', {'posts': posts})
 
 
 def post_create(request):
@@ -21,13 +21,13 @@ def post_create(request):
         if author and title and content:
             Post.objects.create(author=author, title=title, content=content)
         posts = Post.objects.all().order_by('-date_created')
-        return render(request, 'blog/partials/post_list.html', {'posts': posts})
+        return render(request, 'tax/partials/post_list.html', {'posts': posts})
     return HttpResponse(status=405)
 
 
 def post_edit(request, pk):
     post = get_object_or_404(Post, pk=pk)
-    return render(request, 'blog/partials/post_edit_form.html', {'post': post})
+    return render(request, 'tax/partials/post_edit_form.html', {'post': post})
 
 
 def post_update(request, pk):
@@ -37,7 +37,7 @@ def post_update(request, pk):
         post.title = request.POST.get('title', post.title)
         post.content = request.POST.get('content', post.content)
         post.save()
-    return render(request, 'blog/partials/post_item.html', {'post': post})
+    return render(request, 'tax/partials/post_item.html', {'post': post})
 
 
 from django.views.decorators.http import require_POST
@@ -55,4 +55,4 @@ def post_search(request):
             Post.objects.filter(author__icontains=query) | \
             Post.objects.filter(content__icontains=query)
     posts = posts.order_by('-date_created')
-    return render(request, 'blog/partials/post_list.html', {'posts': posts})
+    return render(request, 'tax/partials/post_list.html', {'posts': posts})
