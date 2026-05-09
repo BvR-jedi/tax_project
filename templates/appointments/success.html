@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}Request Submitted{% endblock %}
+
+{% block content %}
+<section class="content-section success-page">
+    <h1>Request Submitted</h1>
+    <p>Your appointment request is on its way. We will review your preferred date and time and be in touch shortly with a confirmation.</p>
+    <a class="button" href="{% url 'home' %}">Return to Home</a>
+</section>
+{% endblock %}

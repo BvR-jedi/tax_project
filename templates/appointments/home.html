@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Accountant Services{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="hero-copy">
+        <h1>Schedule an appointment with our accountant</h1>
+        <p>We help individuals and small businesses with tax preparation, bookkeeping, payroll, audit support, and financial planning.</p>
+        <a class="button button-primary" href="{% url 'request_appointment' %}">Request Appointment</a>
+    </div>
+</section>
+
+<section class="content-section">
+    <h2>How it works</h2>
+    <p>Submit your preferred date and time, and our team will review your request. We use the Django Admin interface to manage requests, finalize schedules, and avoid appointment conflicts.</p>
+    <ul>
+        <li>Fill out the appointment request form.</li>
+        <li>Receive a confirmation message after submission.</li>
+        <li>Our staff will complete the request and set a finalized appointment time.</li>
+    </ul>
+</section>
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block title %}Request an Appointment{% endblock %}
+
+{% block content %}
+<section class="form-page">
+    <div class="content-section">
+        <h1>Appointment Request</h1>
+        <p>Please share your preferred date and time so we can review your request and follow up promptly.</p>
+    </div>
+
+    <form method="post" class="appointment-form" novalidate>
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+
+        <div class="field-group">
+            <label for="id_full_name">{{ form.full_name.label }}</label>
+            {{ form.full_name }}
+            {{ form.full_name.errors }}
+        </div>
+
+        <div class="field-group">
+            <label for="id_email">{{ form.email.label }}</label>
+            {{ form.email }}
+            {{ form.email.errors }}
+        </div>
+
+        <div class="field-group">
+            <label for="id_phone_number">{{ form.phone_number.label }}</label>
+            {{ form.phone_number }}
+            {{ form.phone_number.errors }}
+        </div>
+
+        <div class="field-row">
+            <div class="field-group half-width">
+                <label for="id_preferred_date">{{ form.preferred_date.label }}</label>
+                {{ form.preferred_date }}
+                {{ form.preferred_date.errors }}
+                <small>{{ form.preferred_date.help_text }}</small>
+            </div>
+            <div class="field-group half-width">
+                <label for="id_preferred_time">{{ form.preferred_time.label }}</label>
+                {{ form.preferred_time }}
+                {{ form.preferred_time.errors }}
+                <small>{{ form.preferred_time.help_text }}</small>
+            </div>
+        </div>
+
+        <div class="field-group">
+            <label for="id_client_notes">{{ form.client_notes.label }}</label>
+            {{ form.client_notes }}
+            {{ form.client_notes.errors }}
+        </div>
+
+        <button type="submit" class="button button-primary">Submit Request</button>
+    </form>
+</section>
+{% endblock %}
