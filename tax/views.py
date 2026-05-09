@@ -1,11 +1,12 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
-from .models import Post
+from .models import Post, FAQ
 
 
 def index(request):
     posts = Post.objects.all().order_by('-date_created')
-    return render(request, 'tax/index.html', {'posts': posts})
+    faqs = FAQ.objects.all()
+    return render(request, 'tax/index.html', {'posts': posts, 'faqs': faqs})
 
 
 def post_list(request):

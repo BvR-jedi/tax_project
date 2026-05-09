@@ -28,7 +28,21 @@
 
 <hr>
 
-<h2>Create New Post</h2>
+<h2>Frequently Asked Questions</h2>
+<div class="faq-section">
+    {% for faq in faqs %}
+    <div class="faq-item">
+        <h3>{{ faq.question }}</h3>
+        <p>{{ faq.answer }}</p>
+    </div>
+    {% empty %}
+    <p>No FAQs available at this time.</p>
+    {% endfor %}
+</div>
+
+<hr>
+
+<h2>Contact me</h2>
 <form hx-post="/posts/create/"
       hx-target="#post-list"
       hx-swap="innerHTML"

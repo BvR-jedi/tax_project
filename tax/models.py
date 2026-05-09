@@ -9,3 +9,15 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class FAQ(models.Model):
+    question = models.CharField(max_length=300)
+    answer = models.TextField()
+    order = models.IntegerField(default=0)
+
+    class Meta:
+        ordering = ['order']
+
+    def __str__(self):
+        return self.question
